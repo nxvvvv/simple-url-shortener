@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL</title>
+
+    <link rel='stylesheet' href='//cdn.repl.email/styles/water.css'>
+</head>
+<body>
+
+    <script src='//code.jquery.com/jquery.min.js'></script>
+
+    <h1>URL Shortener</h1>
+    <hr>
+
+    <label for='url'>URL to shorten</label>
+    <input name='url'>
+    <button onclick='shorten()'>Shorten</button>
+
+    <h3 id='res'></h3>
+
+    <script>
+        function shorten() {
+            url = $('input[name=url]').val();
+            if (url) {
+                $.post('/api/create', {'url': url}, (res) => {
+                    $('#res').html(`<a href='${res["url"]}'>${res['key']}</a>`);
+                })
+            } else {
+                $('#res').text('No URL Specified');
+            }
+        }
+    </script>
+    
+</body>
+</html>
