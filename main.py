@@ -26,10 +26,10 @@ def api_create():
     url = request.form['url']
     chars = string.ascii_lowercase + string.ascii_uppercase + string.digits
     c = 4
-    key = ''.join([random.choice(chars) for i in range(c)])
+    key = ''.join([random.choice(chars) for _ in range(c)])
     while key in list(db.keys()):
         c += 1
-        key = ''.join([random.choice(chars) for i in range(c)])
+        key = ''.join([random.choice(chars) for _ in range(c)])
     db[key] = {
         'url': url,
         'views': 0
